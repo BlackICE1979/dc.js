@@ -133,7 +133,7 @@ d3.csv("ndx.csv", function (data) {
 
     // create categorical dimension
     var gainOrLoss = ndx.dimension(function (d) {
-        return d.open > d.close ? "Loss" : "Gain";
+        return d.open > d.close ? "Perte" : "Gain";
     });
     // produce counts records in the dimension
     var gainOrLossGroup = gainOrLoss.group();
@@ -163,7 +163,7 @@ d3.csv("ndx.csv", function (data) {
     // counts per weekday
     var dayOfWeek = ndx.dimension(function (d) {
         var day = d.dd.getDay();
-        var name=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+        var name=["Dim","Lun","Mar","Mer","Jeu","Ven","Sam"];
         return day+"."+name[day];
     });
     var dayOfWeekGroup = dayOfWeek.group();
@@ -358,13 +358,13 @@ d3.csv("ndx.csv", function (data) {
         .brushOn(false)
         // Add the base layer of the stack with group. The second parameter specifies a series name for use in the legend
         // The `.valueAccessor` will be used for the base layer
-        .group(indexAvgByMonthGroup, "Monthly Index Average")
+        .group(indexAvgByMonthGroup, "Moyenne Mensuelle")
         .valueAccessor(function (d) {
             return d.value.avg;
         })
         // stack additional layers with `.stack`. The first paramenter is a new group.
         // The second parameter is the series name. The third is a value accessor.
-        .stack(monthlyMoveGroup, "Monthly Index Move", function (d) {
+        .stack(monthlyMoveGroup, "Index changements mensuels", function (d) {
             return d.value;
         })
         // title can be called by any stack layer.
