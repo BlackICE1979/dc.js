@@ -358,13 +358,13 @@ d3.csv("ndx.csv", function (data) {
         .brushOn(false)
         // Add the base layer of the stack with group. The second parameter specifies a series name for use in the legend
         // The `.valueAccessor` will be used for the base layer
-        .group(indexAvgByMonthGroup, "Moyenne Mensuelle")
+        .group(indexAvgByMonthGroup, "Volume Moyen Mensuel/1000")
         .valueAccessor(function (d) {
             return d.value.avg;
         })
         // stack additional layers with `.stack`. The first paramenter is a new group.
         // The second parameter is the series name. The third is a value accessor.
-        .stack(monthlyMoveGroup, "Index changements mensuels", function (d) {
+        .stack(monthlyMoveGroup, "Prix Moyen (m^3*1000)", function (d) {
             return d.value;
         })
         // title can be called by any stack layer.
